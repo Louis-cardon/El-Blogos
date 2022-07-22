@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +18,14 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('content');
+            $table->string('image');
             $table->timestamps();
+
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Category::class);
+            $table->foreignIdFor(Post::class);
         });
     }
 
